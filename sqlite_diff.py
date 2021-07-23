@@ -24,7 +24,7 @@ def export_sql(dbFile):
                 skipTable = False
                 f.write("\n")
                 f.write("-- Table: " + tableName + "\n")
-                f.write("DROP TABLE IF EXISTS " + tableName = ";\n")
+                f.write("DROP TABLE IF EXISTS " + tableName + ";\n")
                 f.write("%s\n" % line)
             elif "DELETE FROM" in line:
 				# this is sqlite_sequence table, skip it
@@ -41,7 +41,7 @@ def export_sql(dbFile):
                     # add space after VALUES
                     line = line[:v + 6] + " " + line[v + 6:]
                     # add column names before VALUES
-                    line = line[:v - 1] + " " + columnNames + " " + line[v:]
+                    line = line[:v - 1] + " " + columnNames + " " + line[v:]# .replace(",", ", ")
                     # TODO: add spaces after commas in VALUES clause
                 f.write("%s\n" % line)
         f.write("\n")
