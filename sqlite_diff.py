@@ -6,7 +6,6 @@ def main(sourceFile, destinationFile):
     sourceSql = exportSql(sourceFile)
     destinationSql = exportSql(destinationFile)
     os.system("cm diff " + sourceSql + " " + destinationSql)
-    input("Press Enter to continue...")
 
 
 def exportSql(dbFile):
