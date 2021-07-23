@@ -13,6 +13,7 @@ def export_sql(dbFile):
     connection = sqlite3.connect(dbFile)
     with open(sqlFile, 'w') as f:
         f.write("PRAGMA foreign_keys = off;\n")
+        tableName = ""
         columnNames = ""
         skipTable = False
         for line in connection.iterdump():
@@ -31,7 +32,8 @@ def export_sql(dbFile):
                 continue
             elif skipTable is False:
                 if "INSERT INTO" in line:
-                    line = line[:12] + " " + columnNames + " " + line[12:]
+                    v = line.find("VALUES") - 1
+                    line = line[:v] + " " + columnNames + " " + line[v + 1:]
                 f.write("%s\n" % line)
         f.write("\n")
         f.write("COMMIT TRANSACTION;\n")
