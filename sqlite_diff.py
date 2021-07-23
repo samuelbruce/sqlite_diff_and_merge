@@ -23,7 +23,7 @@ def export_sql(dbFile):
                 columnNames = get_column_names(line)
                 skipTable = False
                 f.write("\n")
-                f.write("--Table: " + tableName + "\n")
+                f.write("-- Table: " + tableName + "\n")
                 f.write("DROP TABLE IF EXISTS " + tableName = ";\n")
                 f.write("%s\n" % line)
             elif "DELETE FROM" in line:
