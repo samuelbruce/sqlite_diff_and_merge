@@ -3,8 +3,8 @@ import sqlite3
 import sys
 
 def main(sourceFile, destinationFile):
-    sourceSql = exportSql(sourceFile)
-    destinationSql = exportSql(destinationFile)
+    sourceSql = export_sql(sourceFile)
+    destinationSql = export_sql(destinationFile)
     os.system("cm diff " + sourceSql + " " + destinationSql)
 
 
