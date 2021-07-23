@@ -40,9 +40,8 @@ def export_sql(dbFile):
                     v = line.find("VALUES")
                     # add space after VALUES
                     line = line[:v + 6] + " " + line[v + 6:]
-                    # add column names before VALUES
-                    line = line[:v - 1] + " " + columnNames + " " + line[v:]# .replace(",", ", ")
-                    # TODO: add spaces after commas in VALUES clause
+                    # add column names before VALUES, add spaces after commas in VALUES clause
+                    line = line[:v - 1] + " " + columnNames + " " + line[v:].replace(",", ", ")
                 f.write("%s\n" % line)
         f.write("\n")
         f.write("COMMIT TRANSACTION;\n")
