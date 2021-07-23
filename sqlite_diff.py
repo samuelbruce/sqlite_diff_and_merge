@@ -16,8 +16,9 @@ def exportSql(dbFile):
         f.write("PRAGMA foreign_keys = off;\n")
         for line in connection.iterdump():
             if "CREATE TABLE" in line:
+                tableName = line[13:line[13:].find(" ")+13]
                 f.write("\n")
-                f.write("--Table:\n")
+                f.write("--Table: " + tableName + "\n")
             elif "COMMIT" in line:
                 continue
             f.write("%s\n" % line)
