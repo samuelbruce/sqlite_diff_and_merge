@@ -3,6 +3,7 @@ import os
 import sqlite3
 import sys
 
+
 def main(sourceFile, destinationFile):
     sourceSql = export_sql(sourceFile)
     destinationSql = export_sql(destinationFile)
