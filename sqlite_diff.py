@@ -13,8 +13,17 @@ def exportSql(dbFile):
     sqlFile = dbFile[:-3] + ".sql"
     connection = sqlite3.connect(dbFile)
     with open(sqlFile, 'w') as f:
+        f.write("PRAGMA foreign_keys = off;\n")
         for line in connection.iterdump():
-            f.write('%s\n' % line)
+            if "CREATE TABLE" in line:
+                f.write("\n")
+                f.write("--Table:\n")
+            elif "COMMIT" in line:
+                continue
+            f.write("%s\n" % line)
+        f.write("\n")
+        f.write("COMMIT TRANSACTION;\n")
+        f.write("PRAGMA foreign_keys = on;\n")
         return sqlFile
 
 
