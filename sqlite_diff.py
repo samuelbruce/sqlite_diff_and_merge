@@ -10,10 +10,11 @@ def main(sourceFile, destinationFile):
 
 
 def export_sql(dbFile):
-    # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio's export
+    # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio export
     sqlFile = dbFile[:-3] + ".sql"
     connection = sqlite3.connect(dbFile)
     with open(sqlFile, 'w') as f:
+        # add header similar to SQLiteStudio export
         f.write("--\n")
         f.write("-- File generated with sqlite_diff.py on " + datetime.datetime.now().strftime("%a %b %#d %H:%M:%S %Y") + "\n")
         f.write("--\n")
