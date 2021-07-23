@@ -36,20 +36,32 @@ def export_sql(dbFile):
 
 def get_column_names(line):
     # from a line containing a CREATE TABLE command return a string containing, in parentheses, a comma-separated list of the table's column names
+    # tested for all cases in cpq.db as at 23/07/21
     columnNames = []
     i = line.find("(")
     while True:
+        # truncate start of line
         line = line[i + 1:]
-        i = line.find(" ")
+        # find the next space or comma, whichever comes first
+        i = min(line.find(" "), line.find(","))
         if i == -1:
-            break
-        s = line[:i]
-        if s == "CONSTRAINT" or s == "PRIMARY" or s == "UNIQUE" or s == "CHECK" or s == "FOREIGN":
+            # there are no more spaces, this is the last column and has no type name
+            i = line.find(")")
+            s = line[:i]
+        else:
+            s = line[:i]
+            if ")" in s:
+                # deal with cases ending in WITHOUT ROWID
+                s = s[:-1]
+        if "CONSTRAINT" in s or "PRIMARY" in s or "UNIQUE" in s or "CHECK" in s or "FOREIGN" in s:
             # we have reached table constraints so there are no more columns
             break
         else:
             columnNames.append(s)
             i = line.find(", ") + 1
+            if i == 0:
+                # there are no more commas so there are no more columns
+                break
     temp = "("
     for columnName in columnNames:
         temp = temp + columnName + ", "
