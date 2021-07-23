@@ -33,8 +33,11 @@ def export_sql(dbFile):
                 continue
             elif skipTable is False:
                 if "INSERT INTO" in line:
-                    v = line.find("VALUES") - 1
-                    line = line[:v] + " " + columnNames + " " + line[v + 1:]
+                    v = line.find("VALUES")
+                    # add space after VALUES
+                    line = line[:v + 6] + " " + line[v + 6:]
+                    # add column names before VALUES
+                    line = line[:v - 1] + " " + columnNames + " " + line[v:]
                 f.write("%s\n" % line)
         f.write("\n")
         f.write("COMMIT TRANSACTION;\n")
