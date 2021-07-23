@@ -47,7 +47,10 @@ def get_column_names(line):
         # truncate start of line
         line = line[i + 1:]
         # find the next space or comma, whichever comes first
-        i = min(line.find(" "), line.find(","))
+        i = line.find(" ")
+        j = line.find(",")
+        if j > 0:
+            i = min(i, j)
         if i == -1:
             # there are no more spaces, this is the last column and has no type name
             i = line.find(")")
