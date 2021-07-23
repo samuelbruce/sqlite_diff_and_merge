@@ -9,6 +9,7 @@ def main(sourceFile, destinationFile):
 
 
 def export_sql(dbFile):
+    # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio's export
     sqlFile = dbFile[:-3] + ".sql"
     connection = sqlite3.connect(dbFile)
     with open(sqlFile, 'w') as f:
