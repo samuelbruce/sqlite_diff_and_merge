@@ -1,3 +1,4 @@
+import datetime
 import os
 import sqlite3
 import sys
@@ -13,6 +14,11 @@ def export_sql(dbFile):
     sqlFile = dbFile[:-3] + ".sql"
     connection = sqlite3.connect(dbFile)
     with open(sqlFile, 'w') as f:
+        f.write("--\n")
+        f.write("-- File generated with sqlite_diff.py on " + datetime.datetime.now().strftime("%a %b %#d %H:%M:%S %Y") + "\n")
+        f.write("--\n")
+        f.write("-- Text encoding used: UTF-8\n")
+        f.write("--\n")
         f.write("PRAGMA foreign_keys = off;\n")
         tableName = ""
         columnNames = ""
