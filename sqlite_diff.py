@@ -33,6 +33,9 @@ def export_sql(dbFile):
                 continue
             elif skipTable is False:
                 if "INSERT INTO" in line:
+                    # remove quotes around table name
+                    t = line.find(tableName)
+                    line = line[:t - 1] + tableName + line[t + len(tableName) + 1:]
                     v = line.find("VALUES")
                     # add space after VALUES
                     line = line[:v + 6] + " " + line[v + 6:]
