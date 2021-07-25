@@ -8,7 +8,7 @@ import winsound
 def diff(sourceFile, destinationFile):
     sourceSql = export_sql(sourceFile)
     destinationSql = export_sql(destinationFile)
-    os.system("cm diff " + sourceSql + " " + destinationSql)
+    os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql)
 
 
 def merge(sourceFile, destinationFile, baseFile, outputFile):
@@ -18,6 +18,7 @@ def merge(sourceFile, destinationFile, baseFile, outputFile):
     outputSql = export_sql(outputFile)
     os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql + " -b=" + baseSql + " -r=" + outputFile)
     winsound.Beep(2500,500)
+
 
 def export_sql(dbFile):
     # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio export
