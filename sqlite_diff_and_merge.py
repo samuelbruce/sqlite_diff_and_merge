@@ -22,7 +22,7 @@ def export_sql(dbFile):
     with open(sqlFile, 'w') as f:
         # add header similar to SQLiteStudio export
         f.write("--\n")
-        f.write("-- File generated with sqlite_diff.py on " + datetime.datetime.now().strftime("%a %b %#d %H:%M:%S %Y") + "\n")
+        f.write("-- File generated with sqlite_diff_and_merge.py on " + datetime.datetime.now().strftime("%a %b %#d %H:%M:%S %Y") + "\n")
         f.write("--\n")
         f.write("-- Text encoding used: UTF-8\n")
         f.write("--\n")
