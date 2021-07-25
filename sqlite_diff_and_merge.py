@@ -16,8 +16,8 @@ def merge(sourceFile, destinationFile, baseFile, outputFile):
     destinationSql = export_sql(destinationFile)
     baseSql = export_sql(baseFile)
     outputSql = export_sql(outputFile)
-    os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql + " -b=" + baseSql + " -r=" + outputFile)
-    winsound.Beep(2500,500)
+    os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql + " -b=" + baseSql + " -r=" + outputSql)
+    import_sql(outputSql)
 
 
 def export_sql(dbFile):
@@ -65,6 +65,19 @@ def export_sql(dbFile):
         f.write("COMMIT TRANSACTION;\n")
         f.write("PRAGMA foreign_keys = on;\n")
         return sqlFile
+
+
+def import_sql(sqlFile):
+    dbFile = sqlFile[:-4] + ".db"
+    connection = sqlite3.connect(dbFile)
+    cursor = connection.cursor()
+    with open(sqlFile, "r") as f:   
+        sql = f.read()
+        cursor.executescript(sql)
+    connection.commit()
+    connection.close
+    return dbFile
+
 
 def get_column_names(line):
     # from a line containing a CREATE TABLE command return a string containing, in parentheses, a comma-separated list of the table's column names
