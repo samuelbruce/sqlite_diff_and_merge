@@ -9,6 +9,9 @@ def diff(sourceFile, destinationFile):
     sourceSql = export_sql(sourceFile)
     destinationSql = export_sql(destinationFile)
     os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql)
+    # cleanup sql files
+    for sqlFile in [sourceSql, destinationSql]:
+        os.system("del " + sqlFile)
 
 
 def merge(sourceFile, destinationFile, baseFile, outputFile):
@@ -18,6 +21,9 @@ def merge(sourceFile, destinationFile, baseFile, outputFile):
     outputSql = export_sql(outputFile)
     os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql + " -b=" + baseSql + " -r=" + outputSql)
     import_sql(outputSql)
+    # cleanup sql files
+    for sqlFile in [sourceSql, destinationSql, baseSql, outputSql]:
+        os.system("del " + sqlFile)
 
 
 def export_sql(dbFile):
@@ -45,7 +51,7 @@ def export_sql(dbFile):
                 f.write("DROP TABLE IF EXISTS " + tableName + ";\n")
                 f.write("%s\n" % line)
             elif "DELETE FROM" in line:
-				# this is sqlite_sequence table, skip it
+                # this is sqlite_sequence table, skip it
                 skipTable = True
                 continue
             elif "COMMIT" in line:
