@@ -115,4 +115,4 @@ if __name__ == "__main__":
     elif len(sys.argv) == 5:
         baseFile = sys.argv[3]
         outputFile = sys.argv[4]
-        merge(sourceFile, destinationFile, baseFile, outputFile):
+        merge(sourceFile, destinationFile, baseFile, outputFile)
