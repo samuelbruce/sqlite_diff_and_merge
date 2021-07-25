@@ -2,6 +2,7 @@ import datetime
 import os
 import sqlite3
 import sys
+import winsound
 
 
 def diff(sourceFile, destinationFile):
@@ -11,16 +12,12 @@ def diff(sourceFile, destinationFile):
 
 
 def merge(sourceFile, destinationFile, baseFile, outputFile):
-    print(sourceFile)
-    print(destinationFile)
-    print(baseFile)
-    print(outputFile)
-    input("Press Enter to continue...")
-    """
     sourceSql = export_sql(sourceFile)
     destinationSql = export_sql(destinationFile)
     baseSql = export_sql(baseFile)
-    """
+    outputSql = export_sql(outputFile)
+    os.system("mergetool -s=" + sourceSql + " -d=" + destinationSql + " -b=" + baseSql + " -r=" + outputFile)
+    winsound.Beep(2500,500)
 
 def export_sql(dbFile):
     # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio export
