@@ -4,11 +4,16 @@ import sqlite3
 import sys
 
 
-def main(sourceFile, destinationFile):
+def diff(sourceFile, destinationFile):
     sourceSql = export_sql(sourceFile)
     destinationSql = export_sql(destinationFile)
     os.system("cm diff " + sourceSql + " " + destinationSql)
 
+
+def merge(sourceFiles, destinationFile, baseFile, outputFile):
+    sourceSql = export_sql(sourceFile)
+    destinationSql = export_sql(destinationFile)
+    baseSql = export_sql(baseFile)
 
 def export_sql(dbFile):
     # export contents of the .db file to an .sql file, mimicking the format of SQLiteStudio export
@@ -97,4 +102,7 @@ def get_column_names(line):
 if __name__ == "__main__":
     sourceFile = sys.argv[1]
     destinationFile = sys.argv[2]
-    main(sourceFile, destinationFile)
+    if len(sys.argv) == 3:
+        diff(sourceFile, destinationFile)
+    elif len(sys.argv) == 5:
+        merge(sourceFiles, destinationFile, baseFile, outputFile)
