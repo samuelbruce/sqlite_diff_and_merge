@@ -1,1 +1,0 @@
-python.exe ""C:\Users\Xero\wkspaces\sqlite_diff_and_merge\sqlite_diff.py"" @sourcefile @destinationfile
