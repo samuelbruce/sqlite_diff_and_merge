@@ -13,6 +13,7 @@ Preferences -> Diff tools -> Add
 		python.exe "C:\Users\Xero\wkspaces\sqlite_diff_and_merge\sqlite_diff_and_merge.py" @sourcefile @destinationfile
 	select "Use with files that match the following pattern:" and enter
 		.db
+	change the order of rules so that .db rule is applied before $text and $bin
 
 Preferences -> Merge tools -> Add
 	select "External merge tool"
@@ -20,3 +21,7 @@ Preferences -> Merge tools -> Add
 		python.exe "C:\Users\Xero\wkspaces\sqlite_diff_and_merge\sqlite_diff_and_merge.py" @sourcefile @destinationfile @basefile @output
 	select "Use with files that match the following pattern:" and enter
 		.db
+	change the order of rules so that .db rule is applied before $text and $bin
+
+HOW TO USE:
+In pending changes or diff view, right-click on the .db file and select "External Diff", or highlight the file an hit Ctrl-D
