@@ -10,7 +10,7 @@ HOW TO CONFIGURE IN PLASTIC:
 Preferences -> Diff tools -> Add
 	select "External diff tool"
 	enter command line as follows (edit path to sqlite_diff_and_merge workspace as necessary):
-		python.exe "C:\PATH_TO_WORKSPACE\sqlite_diff_and_merge\sqlite_diff_and_merge.py" @sourcefile @destinationfile
+		python.exe "PATH_TO_WORKSPACE\sqlite_diff_and_merge\sqlite_diff_and_merge.py" @sourcefile @destinationfile
 	select "Use with files that match the following pattern:" and enter
 		.db
 	change the order of rules so that .db rule is applied before $text and $bin
@@ -18,7 +18,7 @@ Preferences -> Diff tools -> Add
 Preferences -> Merge tools -> Add
 	select "External merge tool"
 	enter command line as follows (edit path to sqlite_diff_and_merge workspace as necessary):
-		python.exe "C:\PATH_TO_WORKSPACE\sqlite_diff_and_merge.py" @sourcefile @destinationfile @basefile @output
+		python.exe "PATH_TO_WORKSPACE\sqlite_diff_and_merge.py" @sourcefile @destinationfile @basefile @output
 	select "Use with files that match the following pattern:" and enter
 		.db
 	change the order of rules so that .db rule is applied before $text and $bin
