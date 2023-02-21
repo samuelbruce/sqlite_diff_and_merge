@@ -73,8 +73,17 @@ def export_sql(dbFile):
                     v = line.find("VALUES")
                     # add space after VALUES
                     line = line[:v + 6] + " " + line[v + 6:]
-                    # add column names before VALUES, add spaces after commas in VALUES clause
-                    line = line[:v - 1] + " " + columnNames + " " + line[v:].replace(",", ", ")
+                    # add column names before VALUES
+                    temp = line[v:]
+                    line = line[:v - 1] + " " + columnNames + " "
+                    # add spaces after commas in VALUES clause, except if inside a string value
+                    sval = False
+                    for c in temp:
+                        if c == "\'": 
+                            sval = not sval
+                        elif c == "," and not sval:
+                            c = c + " "
+                        line += c
                 f.write("%s\n" % line)
         f.write("\n")
         f.write("COMMIT TRANSACTION;\n")
