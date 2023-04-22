@@ -1,7 +1,7 @@
 sqlite_diff_and_merge.py
 
 A tool for diff and merge of sqlite databases in Plastic SCM.
-It exports the contents of an sqlite .db file to a text .sql file.
+It exports the contents of an sqlite .db file to an .sql file.
 Diff and merge are then handled by calling Plastic's mergetool.
 After merge, the resulting .sql is imported back to the .db
 
