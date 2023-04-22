@@ -32,4 +32,4 @@ Find the <DiffToolData> or <MergeToolData> element that corresponds to the diff 
 Change the content of the child <FileType> element to "enBinaryFile"
 
 ## HOW TO USE:
-In pending changes or diff view, right-click on the .db file and select "External Diff", or highlight the file an hit Ctrl-D
+In pending changes or diff view, right-click on the .db file and select "External Diff", or highlight the file and hit Ctrl-D
